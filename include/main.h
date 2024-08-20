@@ -1,6 +1,7 @@
 #pragma once
 
-int switch_state = 2;
+// 0 is off, 1 is auto, 2 is on
+int switch_state = 1;
 
 void setup();
 

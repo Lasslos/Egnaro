@@ -6,7 +6,6 @@
 #include <auto_mode.h>
 
 
-// 0 is off, 1 is auto, 2 is on
 void setup() {
   pinMode(LED_PIN, OUTPUT);
 }
