@@ -1,12 +1,12 @@
+#pragma once
+#include <main.h>
+#include <config.h>
 #include <Arduino.h>
-#include <control_switch_state.cpp>
-#include <auto_mode.cpp>
+#include <control_switch_state.h>
+#include <auto_mode.h>
 
-#define LED_PIN 32
 
 // 0 is off, 1 is auto, 2 is on
-int switch_state = 2;
-
 void setup() {
   pinMode(LED_PIN, OUTPUT);
 }
