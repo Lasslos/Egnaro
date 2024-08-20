@@ -1,9 +1,8 @@
 #include <Arduino.h>
+#include <control_switch_state.cpp>
+#include <auto_mode.cpp>
 
 #define LED_PIN 32
-
-void controlSwitchState();
-void autoMode();
 
 // 0 is off, 1 is auto, 2 is on
 int switch_state = 2;
@@ -29,12 +28,4 @@ void loop() {
   default:
     break;
   }
-}
-
-void controlSwitchState() {
-  // Check the switch state
-}
-
-void autoMode() {
-  // Controll output mode
 }
