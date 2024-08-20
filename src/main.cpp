@@ -3,22 +3,32 @@
 #include <Arduino.h>
 #include <control_switch_state.h>
 #include <auto_mode.h>
-#include <LiquidCrystal_I2C.h>
 
-LiquidCrystal_I2C lcd(0x27,16,2);
+#include <U8g2lib.h>  // Display-Library
+#include <Wire.h>     // IIC-Library
+
+// Adresse des Displays
+// Es kann sein, dass ihr eine andere Adresse verwenden müsst
+// Ihr findet unter dem Beispielcode im Handout eine Liste möglicher Adressen
+#define DISP_ADDR 0x7A
+
+#define DISP_SDA 21   // ESP-Pin verbunden mit SDA
+#define DISP_SCL 22   // ESP-Pin verbunden mit SCL
+
+/* Konstruktion Display-Objekt mit Namen "display" */
+U8G2_SSD1306_128X64_NONAME_1_SW_I2C display(U8G2_R0, DISP_SCL, DISP_SDA);
+
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
   pinMode(BUTTON, INPUT_PULLUP);
 
-  lcd.init();
-  lcd.backlight();     // Ausschalten mit lcd.noBacklight()
-  lcd.setCursor(0, 0); // Erstes Argument: Spalte, zweites: Zeile
-  lcd.print("Hello World");
+  display.setI2CAddress(DISP_ADDR);  // Setzen der IIC-Adresse vom Display
+  display.begin();  // Initialisierung des Displays
 }
 
 void loop() {
-  controlSwitchState(switch_state, lcd);
+  controlSwitchState(switch_state, display);
 
   switch (switch_state)
   {

@@ -1,30 +1,38 @@
 #include <control_switch_state.h>
 #include <config.h>
 #include <Arduino.h>
-#include <LiquidCrystal_I2C.h>
+#include <U8g2lib.h>  // Display-Library
+#include <Wire.h>     // IIC-Library
 
-void writeState(const int& state, LiquidCrystal_I2C& lcd) {
-  lcd.clear();
-  lcd.setCursor(0, 0); // Erstes Argument: Spalte, zweites: Zeile
+void writeState(const int& state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& display) {
+  String text = "";
   switch (state)
   {
   case 0:
-    lcd.print("Off");
+    text = "Off";
     break;
   case 1:
-    lcd.print("Auto");
+    text = "Auto";
     break;
   case 2:
-    lcd.print("On");
+    text = "On";
     break;
   default:
     break;
   }
+  /* Beginn Picture-Loop */
+  display.firstPage();  // Initialisierung Picture-Loop
+  do {
+    /* Hier Anzeigeinhalt frei definieren */
+    display.setFont(u8g2_font_ncenB14_tr);  // optional: gewünschte Schriftart
+    display.drawStr(0, 20, "Hello World!");
+  } while (display.nextPage());  // Sobald Inhalt angezeigt: Verlassen der Schleife
+  /* Ende Picture-Loop */
 }
 
 bool can_switch = true;
 
-void controlSwitchState(int &state, LiquidCrystal_I2C& lcd) {
+void controlSwitchState(int &state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& lcd) {
   int pressedState = !digitalRead(BUTTON);
   if (!pressedState) {
     can_switch = true;
