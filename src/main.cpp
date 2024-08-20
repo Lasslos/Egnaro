@@ -1,9 +1,12 @@
 #include <Arduino.h>
 
-#define LED_PIN 0
+#define LED_PIN 32
+
+void controlSwitchState();
+void autoMode();
 
 // 0 is off, 1 is auto, 2 is on
-int switch_state = 0;
+int switch_state = 2;
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
