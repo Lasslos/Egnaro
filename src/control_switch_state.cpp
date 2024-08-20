@@ -5,7 +5,7 @@
 #include <Wire.h>     // IIC-Library
 
 void writeState(const int& state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& display) {
-  String text = "";
+  std::string text = "";
   switch (state)
   {
   case 0:
@@ -25,7 +25,7 @@ void writeState(const int& state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& display) 
   do {
     /* Hier Anzeigeinhalt frei definieren */
     display.setFont(u8g2_font_ncenB14_tr);  // optional: gewünschte Schriftart
-    display.drawStr(0, 20, text);
+    display.drawStr(0, 20, text.c_str());
   } while (display.nextPage());  // Sobald Inhalt angezeigt: Verlassen der Schleife
   /* Ende Picture-Loop */
 }
