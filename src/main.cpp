@@ -1,18 +1,37 @@
 #include <Arduino.h>
 
-// put function declarations here:
-int myFunction(int, int);
+#define LED_PIN 0
+
+// 0 is off, 1 is auto, 2 is on
+int switch_state = 0;
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  pinMode(LED_PIN, OUTPUT);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  controlSwitchState();
+
+  switch (switch_state)
+  {
+  case 0:
+    digitalWrite(LED_PIN, LOW);  
+    break;
+  case 1:
+    autoMode();
+    break;
+  case 2:
+    digitalWrite(LED_PIN, HIGH);
+    break;
+  default:
+    break;
+  }
 }
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void controlSwitchState() {
+  // Check the switch state
+}
+
+void autoMode() {
+  // Controll output mode
 }
