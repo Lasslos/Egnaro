@@ -33,6 +33,7 @@ void writeState(const int& state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& display) 
 bool can_switch = true;
 
 void controlSwitchState(int &state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& lcd) {
+    writeState(state, lcd);
   int pressedState = !digitalRead(BUTTON);
   if (!pressedState) {
     can_switch = true;
@@ -44,6 +45,5 @@ void controlSwitchState(int &state, U8G2_SSD1306_128X64_NONAME_1_SW_I2C& lcd) {
   can_switch = false;
   state++;
   state = state % 3;
-  writeState(state, lcd);
 }
 

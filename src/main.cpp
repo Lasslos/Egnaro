@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <control_switch_state.h>
 #include <auto_mode.h>
+#include <neopixel.h>
 
 #include <U8g2lib.h>  // Display-Library
 #include <Wire.h>     // IIC-Library
@@ -15,14 +16,17 @@
 #define DISP_SDA 21   // ESP-Pin verbunden mit SDA
 #define DISP_SCL 22   // ESP-Pin verbunden mit SCL
 
+
 /* Konstruktion Display-Objekt mit Namen "display" */
 U8G2_SSD1306_128X64_NONAME_1_SW_I2C display(U8G2_R0, DISP_SCL, DISP_SDA);
 
 
 void setup() {
-  pinMode(LED_PIN, OUTPUT);
+  //pinMode(LED_PIN, OUTPUT);
   pinMode(LDR, INPUT);
   pinMode(BUTTON, INPUT_PULLUP);
+
+  setup_LED_Strip();
 
   Serial.begin(9600);
 
@@ -36,13 +40,13 @@ void loop() {
   switch (switch_state)
   {
   case 0:
-    digitalWrite(LED_PIN, LOW);  
+    led_off(); 
     break;
   case 1:
     autoMode();
     break;
   case 2:
-    digitalWrite(LED_PIN, HIGH);
+    led_on();
     break;
   default:
     break;

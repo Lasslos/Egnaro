@@ -2,21 +2,20 @@
 #include <Arduino.h>
 #include <config.h>
 #include <auto_mode.h>
+#include <neopixel.h>
 
 
 void autoMode() {
 
     int sensorValue = analogRead(LDR);
-    
-    if(sensorValue<200)
+    Serial.println(sensorValue);
+    if(sensorValue<300 or sensorValue<2000&&sensorValue>1400)
     {
-      digitalWrite(LED_PIN,HIGH);
-      Serial.println(sensorValue);
+      led_on();
     }
     else
     {
-      digitalWrite(LED_PIN, LOW);
-      delay(50);
+      led_off();
     }
-  
+  delay(50);
 }
