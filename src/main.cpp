@@ -21,15 +21,13 @@ U8G2_SSD1306_128X64_NONAME_1_SW_I2C display(U8G2_R0, DISP_SCL, DISP_SDA);
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
-<<<<<<< HEAD
   pinMode(LDR, INPUT);
-  Serial.begin(9600);
-=======
   pinMode(BUTTON, INPUT_PULLUP);
+
+  Serial.begin(9600);
 
   display.setI2CAddress(DISP_ADDR);  // Setzen der IIC-Adresse vom Display
   display.begin();  // Initialisierung des Displays
->>>>>>> refs/remotes/origin/master
 }
 
 void loop() {
