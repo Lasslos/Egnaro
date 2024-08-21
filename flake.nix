@@ -20,6 +20,8 @@
           buildInputs = [
             platformio
             python3
+            arduino
+            openocd
           ];
         };
       }
