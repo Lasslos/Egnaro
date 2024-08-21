@@ -7,9 +7,11 @@
 void autoMode() {
 
     int sensorValue = analogRead(LDR);
-    if(sensorValue>512)
+    
+    if(sensorValue<200)
     {
       digitalWrite(LED_PIN,HIGH);
+      Serial.println(sensorValue);
     }
     else
     {
