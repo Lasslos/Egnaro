@@ -8,6 +8,8 @@
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
+  pinMode(LDR, INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
