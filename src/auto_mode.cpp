@@ -4,7 +4,7 @@
 #include <auto_mode.h>
 #include <neopixel.h>
 
-int motionStatePrevious = LOW;
+int moveCounter = 0;
 
 void autoMode()
 {
@@ -12,13 +12,21 @@ void autoMode()
   int sensorValue = analogRead(LDR);
   int motionStateCurrent = digitalRead(MOTION_SENSOR);
 
-  if (motionStatePrevious != LOW or motionStateCurrent != HIGH) {
-    led_off();
-  } else if (sensorValue > 200) {
-    led_off();
-  } else {
-    led_on();
+  if (motionStateCurrent == HIGH) {
+    moveCounter = 100;
   }
 
-  motionStatePrevious = motionStateCurrent;
+  Serial.println("AutoMode:");
+  Serial.println(sensorValue);
+  Serial.println(moveCounter);
+
+  if (moveCounter == 0) {
+    led_off();
+  } else if (sensorValue > 200) {
+    moveCounter--;
+    led_off();
+  } else {
+    moveCounter--;
+    led_on();
+  }
 }
