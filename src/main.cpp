@@ -23,6 +23,7 @@ void setup() {
   pinMode(LED_PIN, OUTPUT);
   pinMode(LDR, INPUT);
   pinMode(BUTTON, INPUT_PULLUP);
+  pinMode(Motion_Sensor, INPUT);
 
   Serial.begin(9600);
 

@@ -3,20 +3,21 @@
 #include <config.h>
 #include <auto_mode.h>
 
+int motionStatePrevious = LOW;
 
-void autoMode() {
+void autoMode()
+{
 
-    int sensorValue = analogRead(LDR);
-    
-    if(sensorValue<200)
-    {
-      digitalWrite(LED_PIN,HIGH);
-      Serial.println(sensorValue);
-    }
-    else
-    {
-      digitalWrite(LED_PIN, LOW);
-      delay(50);
-    }
-  
+  int sensorValue = analogRead(LDR);
+  int motionStateCurrent = digitalRead(Motion_Sensor);
+
+  if (motionStatePrevious != LOW or motionStateCurrent != HIGH) {
+    digitalWrite(LED_PIN, LOW);
+  } else if (sensorValue > 200) {
+    digitalWrite(LED_PIN, LOW);
+  } else {
+    digitalWrite(LED_PIN, HIGH);
+  }
+
+  motionStatePrevious = motionStateCurrent;
 }
