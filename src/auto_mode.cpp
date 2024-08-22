@@ -9,7 +9,7 @@ void autoMode()
 {
 
   int sensorValue = analogRead(LDR);
-  int motionStateCurrent = digitalRead(Motion_Sensor);
+  int motionStateCurrent = digitalRead(MOTION_SENSOR);
 
   if (motionStatePrevious != LOW or motionStateCurrent != HIGH) {
     digitalWrite(LED_PIN, LOW);
