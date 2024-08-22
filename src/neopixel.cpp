@@ -12,7 +12,8 @@ void setup_LED_Strip(){
   strip.setBrightness(BRIGHTNESS);
 }
 
-void led_on() {
+void led_on(int brightness) {
+  strip.setBrightness(255 / (6 - brightness));
   for (int i = 0; i < strip.numPixels(); i++)
   {
     strip.setPixelColor(i, strip.Color(255, 255, 255));

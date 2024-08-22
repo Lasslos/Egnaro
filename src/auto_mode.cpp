@@ -22,11 +22,11 @@ void autoMode()
 
   if (moveCounter == 0) {
     led_off();
-  } else if (sensorValue > 200) {
+  } else if (sensorValue >= 500) {
     moveCounter--;
     led_off();
   } else {
     moveCounter--;
-    led_on();
+    led_on(5 - sensorValue / 100);
   }
 }
