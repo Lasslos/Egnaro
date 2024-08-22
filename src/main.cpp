@@ -21,6 +21,7 @@
 /* Konstruktion Display-Objekt mit Namen "display" */
 U8G2_SSD1306_128X64_NONAME_1_SW_I2C display(U8G2_R0, DISP_SCL, DISP_SDA);
 
+int switch_state = 1;
 
 void setup() {
   //pinMode(LED_PIN, OUTPUT);
@@ -50,7 +51,7 @@ void loop() {
     autoMode();
     break;
   case 2:
-    led_on();
+    led_on_api();
     break;
   default:
     break;

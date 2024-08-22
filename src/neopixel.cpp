@@ -1,8 +1,16 @@
+#include <neopixel.h>
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
 #define LED_PIN     14
 #define LED_COUNT  25
 #define BRIGHTNESS 200 // Set BRIGHTNESS to about 1/5 (max = 255)
+
+namespace settings {
+  int brightness = 255;
+  int red = 255;
+  int green = 255;
+  int blue = 255;
+};
 
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
@@ -21,6 +29,14 @@ void led_on(int brightness) {
   strip.show();
 }
 
+void led_on_api() {
+  strip.setBrightness(settings::brightness);
+  for (int i = 0; i < strip.numPixels(); i++)
+  {
+    strip.setPixelColor(i, strip.Color(settings::red, settings::green, settings::blue));
+  }
+  strip.show();
+}
 
 void led_off() {
   for (int i = 0; i < strip.numPixels(); i++)
