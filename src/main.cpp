@@ -4,6 +4,7 @@
 #include <control_switch_state.h>
 #include <auto_mode.h>
 #include <neopixel.h>
+#include <api.h>
 
 #include <U8g2lib.h>  // Display-Library
 #include <Wire.h>     // IIC-Library
@@ -30,6 +31,8 @@ void setup() {
   setup_LED_Strip();
 
   Serial.begin(9600);
+
+  setup_api();
 
   display.setI2CAddress(DISP_ADDR);  // Setzen der IIC-Adresse vom Display
   display.begin();  // Initialisierung des Displays
