@@ -4,18 +4,21 @@
 #include <auto_mode.h>
 #include <neopixel.h>
 
+int motionStatePrevious = LOW;
 
-void autoMode() {
+void autoMode()
+{
 
-    int sensorValue = analogRead(LDR);
-    Serial.println(sensorValue);
-    if(sensorValue<300 or sensorValue<2000&&sensorValue>1400)
-    {
-      led_on();
-    }
-    else
-    {
-      led_off();
-    }
-  delay(50);
+  int sensorValue = analogRead(LDR);
+  int motionStateCurrent = digitalRead(MOTION_SENSOR);
+
+  if (motionStatePrevious != LOW or motionStateCurrent != HIGH) {
+    led_off();
+  } else if (sensorValue > 200) {
+    led_off();
+  } else {
+    led_on();
+  }
+
+  motionStatePrevious = motionStateCurrent;
 }

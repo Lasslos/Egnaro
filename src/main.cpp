@@ -25,6 +25,7 @@ void setup() {
   //pinMode(LED_PIN, OUTPUT);
   pinMode(LDR, INPUT);
   pinMode(BUTTON, INPUT_PULLUP);
+  pinMode(MOTION_SENSOR, INPUT);
 
   setup_LED_Strip();
 
